@@ -40,7 +40,7 @@ function fetchAll(finalCallback) {
             finalCallback(results);
           }
         }
-      })
+      });
     })(i);
   }
 }
