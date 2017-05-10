@@ -1,4 +1,4 @@
-const asyncUtils = module.exports
+const asyncUtils = module.exports;
 
 //original fetchUrl function
 function fetchUrl(pathname, callback) {
@@ -55,7 +55,7 @@ asyncUtils.map = function(valuesArray, asyncFunction, finalCallback) {
           finalCallback(results);
         }
       }
-    })
+    });
   }
 }
 
@@ -91,9 +91,9 @@ asyncUtils.fetchAllPromised = function(callback) {
 asyncUtils.fetchAllAsyncAwait = async function(callback) {
   const promises = pathArray.map(path => fetchUrlPromise(path));
   try {
-    result = await Promise.all(promises)
+    result = await Promise.all(promises);
   } catch(err) {
-    return console.error(err)
+    return console.error(err);
   }
   callback(result);
 }
