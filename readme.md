@@ -3,20 +3,21 @@ Hello Button!
 I'm assuming the clients for this project are end users and that browser compatibility is therefore a priority. I'll start then with a function that solves the Ask explicitly and should work in any browser:
 
 ```javascript
-function fetchAll(finalCallback) {
-  //include provided fetchUrl in scope
-  function fetchUrl(pathname, callback) {
-    var responses = {
-      '/users/1': { id: 1, name: 'Lisa' },
-      '/users/2': { id: 2, name: 'Homer' },
-      '/users/3': { id: 3, name: 'Marge' }
-    };
+//declare provided fetchUrl in scope
+function fetchUrl(pathname, callback) {
+  var responses = {
+    '/users/1': { id: 1, name: 'Lisa' },
+    '/users/2': { id: 2, name: 'Homer' },
+    '/users/3': { id: 3, name: 'Marge' }
+  };
 
-    setTimeout(function() {
-      var response = responses[pathname];
-      callback(response ? null : new Error('Not Found!'), response);
-    }, Math.random() * 10000);
-  }
+  setTimeout(function() {
+    var response = responses[pathname];
+    callback(response ? null : new Error('Not Found!'), response);
+  }, Math.random() * 10000);
+}
+
+function fetchAll(finalCallback) {
   var results = []; // array with which finalCallback will eventually be invoked
   var paths = ['/users/1', '/users/2', '/users/3'];
   var length = paths.length;
@@ -78,7 +79,7 @@ function asyncMap(valuesArray, asyncFunction, finalCallback) {
             finalCallback(results);
           }
         }
-      })
+      });
     })(i);
   }
 }
@@ -96,9 +97,9 @@ Or reuse it like this with another function:
 ```javascript
 function asyncAddTen(n, callback) {
   setTimeout(function() {
-    response = n + 10
+    var response = n + 10;
     callback(null, response);
-  }, Math.random() * 1000)
+  }, Math.random() * 1000);
 }
 
 asyncMap([1, 2, 3, 4, 5], asyncAddTen, console.log);

@@ -85,7 +85,7 @@ asyncUtils.fetchAllPromised = function(callback) {
   const promises = pathArray.map(path => fetchUrlPromise(path));
   Promise.all(promises)
   .then(result => callback(result))
-  .catch(e => console.error(e));
+  .catch(err => console.error(err));
 }
 
 asyncUtils.fetchAllAsyncAwait = async function(callback) {
